@@ -7,9 +7,10 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="logo-container">
         <div className="logo-shape">
-          <div className="logo-inner"></div>
+         <div className="invoice-logo"></div>
         </div>
       </div>
+      
       <div className="sidebar-bottom">
         <button className="theme-toggle">
           <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
