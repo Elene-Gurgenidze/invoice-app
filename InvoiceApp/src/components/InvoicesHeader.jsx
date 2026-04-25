@@ -3,7 +3,6 @@ import React from 'react';
 const InvoicesHeader = ({ count = 7 }) => {
   return (
     <header className="invoices-header">
-      {/* მარცხენა მხარე: ტექსტი */}
       <div className="header-text">
         <h1 className="header-title">Invoices</h1>
         <p className="header-subtitle">
@@ -11,7 +10,6 @@ const InvoicesHeader = ({ count = 7 }) => {
         </p>
       </div>
 
-      {/* მარჯვენა მხარე: კონტროლერები */}
       <div className="header-controls">
         <div className="filter-dropdown">
           <span className="filter-text">Filter by status</span>

@@ -15,8 +15,9 @@ const InvoiceItem = ({ invoice }) => {
         {invoice.status}
       </div>
       
-      <span style={{ color: '#7C5DFA', fontWeight: 'bold', fontSize: '18px' }}> &gt; </span>
-    </div>
+<button className="purple-arrow-btn">
+    {'>'}
+</button>    </div>
   );
 };
 
