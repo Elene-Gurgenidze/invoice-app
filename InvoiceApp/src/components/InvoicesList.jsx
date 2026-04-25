@@ -11,6 +11,10 @@ const invoicesData = [
   { id: 'FV2353', date: '12 Nov 2021', client: 'Anita Wainwright', amount: '3,102.04', status: 'draft' },
 ];
 
+// const filtered = invoicesData.filter((invoice) => {
+//   return invoice.status == "paid";
+// });
+
 const InvoicesList = () => {
   return (
     <div className="invoices-list">

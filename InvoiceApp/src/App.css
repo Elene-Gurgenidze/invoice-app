@@ -245,3 +245,8 @@ body {
     transform: scale(1.1);
 }
 
+.filter-option {
+  background-color: #f8f8fb;
+  border: none;
+  font-family: 'League Spartan', sans-serif;
+}
