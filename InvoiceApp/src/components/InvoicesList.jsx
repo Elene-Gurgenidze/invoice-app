@@ -1,20 +1,15 @@
-import React from 'react';
+import React from 'react'; // 👈 გამოიყენე import და არა require
 import InvoiceItem from './InvoiceItem';
 
-const invoicesData = [
-  { id: 'RT3080', date: '19 Aug 2021', client: 'Jensen Huang', amount: '1,800.90', status: 'paid' },
-  { id: 'XM9141', date: '20 Sep 2021', client: 'Alex Grim', amount: '556.00', status: 'pending' },
-  { id: 'RG0314', date: '01 Oct 2021', client: 'John Morrison', amount: '14,002.33', status: 'paid' },
-  { id: 'RT2080', date: '12 Oct 2021', client: 'Alysa Werner', amount: '102.04', status: 'pending' },
-  { id: 'AA1449', date: '14 Oct 2021', client: 'Mellisa Clarke', amount: '4,032.33', status: 'pending' },
-  { id: 'TY9141', date: '31 Oct 2021', client: 'Thomas Wayne', amount: '6,155.91', status: 'pending' },
-  { id: 'FV2353', date: '12 Nov 2021', client: 'Anita Wainwright', amount: '3,102.04', status: 'draft' },
-];
+const InvoicesList = ({ invoices }) => { // 👈 ფიგურული ფრჩხილები აუცილებელია
+  // უსაფრთხოებისთვის, რომ map-მა შეცდომა არ ამოაგდოს
+  if (!invoices || !Array.isArray(invoices)) {
+    return <div>Loading...</div>;
+  }
 
-const InvoicesList = () => {
   return (
     <div className="invoices-list">
-      {invoicesData.map((invoice) => (
+      {invoices.map((invoice) => (
         <InvoiceItem key={invoice.id} invoice={invoice} />
       ))}
     </div>
