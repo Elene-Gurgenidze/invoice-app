@@ -1,8 +1,7 @@
-import React from 'react'; // 👈 გამოიყენე import და არა require
+import React from 'react'; 
 import InvoiceItem from './InvoiceItem';
 
-const InvoicesList = ({ invoices }) => { // 👈 ფიგურული ფრჩხილები აუცილებელია
-  // უსაფრთხოებისთვის, რომ map-მა შეცდომა არ ამოაგდოს
+const InvoicesList = ({ invoices }) => { 
   if (!invoices || !Array.isArray(invoices)) {
     return <div>Loading...</div>;
   }

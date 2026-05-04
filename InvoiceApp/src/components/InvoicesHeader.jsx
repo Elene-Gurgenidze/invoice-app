@@ -23,7 +23,6 @@ const InvoicesHeader = ({ count, activeFilters, setActiveFilters }) => {
       </div>
 
       <div className="header-controls">
-        {/* ფილტრის კონტეინერი */}
         <div className="filter-dropdown-container">
           <div className="filter-trigger" onClick={() => setIsOpen(!isOpen)}>
             <span className="filter-text">Filter by status</span>
@@ -35,7 +34,6 @@ const InvoicesHeader = ({ count, activeFilters, setActiveFilters }) => {
             </svg>
           </div>
 
-          {/* ჩამოსაშლელი მენიუ */}
           {isOpen && (
             <div className="filter-menu">
               {statuses.map((status) => (
