@@ -1,9 +1,10 @@
-import React, { useState } from 'react'; // აი ასე უნდა ეწეროსimport React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/InvoicesHeader';
 import InvoicesList from './components/InvoicesList';
 import { ALL_INVOICES } from './data';
 import InvoiceEdit from './components/invoiceEdit';
+import InvoiceCreate from './components/InvoiceCreate';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
+  const [isCreating, setIsCreating] = useState(false);
 
   return (
     <div className="app-container">
@@ -25,19 +27,21 @@ function App() {
           count={filteredInvoices.length}
           activeFilters={activeFilters}
           setActiveFilters={setActiveFilters}
+          onNewInvoice={() => setIsCreating(true)}
         />
 
         <InvoicesList invoices={filteredInvoices} />
-
-        <InvoiceEdit
-            invoice={filteredInvoices[0]}
-            onClose={() => setIsEditing(false)}
-          />
 
         {isEditing && (
           <InvoiceEdit
             invoice={selectedInvoice}
             onClose={() => setIsEditing(false)}
+          />
+        )}
+
+        {isCreating && (
+          <InvoiceCreate
+            onClose={() => setIsCreating(false)}
           />
         )}
       </main>

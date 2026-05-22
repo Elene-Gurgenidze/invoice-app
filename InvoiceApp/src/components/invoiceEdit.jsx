@@ -64,7 +64,7 @@ const InvoiceEdit = ({ invoice, onClose }) => {
             placeholder="Client Name"
             className="invoice-input"
           />
-          <br></br>
+          <br />
           <input placeholder="Client Email" className="invoice-input" />
           <input placeholder="Street Address" className="invoice-input" />
 
