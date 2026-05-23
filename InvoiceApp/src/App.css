@@ -107,9 +107,12 @@ body {
   text-transform: uppercase;
 }
 
-.inv-id span { color: #7e88c3; }
+.inv-id span {
+  color: #7e88c3;
+}
 
-.inv-date, .inv-client {
+.inv-date,
+.inv-client {
   color: #7e88c3;
   font-size: 13px;
 }
@@ -133,9 +136,20 @@ body {
   gap: 8px;
 }
 
-.paid { background: rgba(51, 214, 159, 0.06); color: #33d69f; }
-.pending { background: rgba(255, 143, 0, 0.06); color: #ff8f00; }
-.draft { background: rgba(55, 59, 83, 0.06); color: #373b53; }
+.paid {
+  background: rgba(51, 214, 159, 0.06);
+  color: #33d69f;
+}
+
+.pending {
+  background: rgba(255, 143, 0, 0.06);
+  color: #ff8f00;
+}
+
+.draft {
+  background: rgba(55, 59, 83, 0.06);
+  color: #373b53;
+}
 
 .status-dot {
   width: 8px;
@@ -143,9 +157,17 @@ body {
   border-radius: 50%;
 }
 
-.paid .status-dot { background: #33d69f; }
-.pending .status-dot { background: #ff8f00; }
-.draft .status-dot { background: #373b53; }
+.paid .status-dot {
+  background: #33d69f;
+}
+
+.pending .status-dot {
+  background: #ff8f00;
+}
+
+.draft .status-dot {
+  background: #373b53;
+}
 
 .sidebar {
   background-color: #373b53;
@@ -307,7 +329,7 @@ body {
   left: 103px;
   width: calc(100% - 103px);
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
 }
 
@@ -559,4 +581,77 @@ body {
 
 .app-container-dark .item-row button:hover {
   color: #ec5757;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: 90px;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 0px;
+    z-index: 100;
+  }
+
+  .sidebar-bottom {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .sidebar-divider {
+    width: 1px;
+    height: 100%;
+  }
+
+  .logo-container {
+    height: 100%;
+  }
+
+  .main-content {
+    margin-left: 0px;
+    margin-top: 30px;
+  }
+
+  .edit-overlay {
+    left: 0px;
+    top: 90px;
+    border-radius: 0px 20px 20px 0px;
+  }
+}
+
+@media (max-width: 600px) {
+  .invoice-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .inv-date {
+    grid-column-start: 1;
+    grid-row-start: 2;
+  }
+
+  .inv-client {
+    grid-column-start: 2;
+    grid-row-start: 1;
+  }
+
+  .inv-amount {
+    grid-column-start: 1;
+    grid-row-start: 3;
+    text-align: left;
+  }
+
+  .status-tag {
+    grid-column-start: 2;
+    grid-row-start: 3;
+  }
+
+  .purple-arrow-btn {
+    display: none;
+    grid-column-start: 2;
+    grid-row-start: 2;
+  }
 }
