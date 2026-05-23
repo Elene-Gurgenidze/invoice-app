@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-const InvoicesHeader = ({ count, activeFilters, setActiveFilters }) => {
+// ჩავამატეთ onNewInvoiceClick პროპსებში
+const InvoicesHeader = ({ count, activeFilters, setActiveFilters, onNewInvoiceClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const statuses = ['draft', 'pending', 'paid'];
@@ -51,7 +52,8 @@ const InvoicesHeader = ({ count, activeFilters, setActiveFilters }) => {
           )}
         </div>
 
-        <button className="new-invoice-btn">
+        {/* დავუმატეთ onClick ივენთი ახალი ინვოისის ღილაკს */}
+        <button className="new-invoice-btn" onClick={onNewInvoiceClick}>
           <div className="plus-icon-container">
             <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
               <path d="M6.313 10.035v-3.722h3.722V4.313H6.313V.591H4.313v3.722H.591v2h3.722v3.722h2z" fill="#7C5DFA" fillRule="nonzero"/>
