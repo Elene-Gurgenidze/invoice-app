@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const InvoiceItem = ({ invoice }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="invoice-card">
+    <div className="invoice-card" onClick={() => navigate(`/invoice/${invoice.id}`)}>
       <span className="inv-id">
         <span>#</span>{invoice.id}
       </span>
@@ -15,9 +18,10 @@ const InvoiceItem = ({ invoice }) => {
         {invoice.status}
       </div>
       
-<button className="purple-arrow-btn">
-    {'>'}
-</button>    </div>
+      <button className="purple-arrow-btn">
+        {'>'}
+      </button>
+    </div>
   );
 };
 
