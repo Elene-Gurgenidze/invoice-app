@@ -26,8 +26,8 @@ const InvoicesHeader = ({ count, activeFilters, setActiveFilters, onNewInvoice }
         <div className="filter-dropdown-container">
           <div className="filter-trigger" onClick={() => setIsOpen(!isOpen)}>
             <span className="filter-text">Filter by status</span>
-            <svg 
-              className={isOpen ? 'arrow-up' : ''} 
+            <svg
+              className={isOpen ? 'arrow-up' : ''}
               width="11" height="7" xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M1 1l4.228 4.228L9.456 1" stroke="#7C5DFA" strokeWidth="2" fill="none" />

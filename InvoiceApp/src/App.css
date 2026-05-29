@@ -583,75 +583,238 @@ body {
   color: #ec5757;
 }
 
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 56px 24px;
+  }
+
+  .edit-drawer {
+    width: 75%;
+  }
+}
 
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;
-    height: 90px;
+    height: 80px;
     flex-direction: row;
     justify-content: space-between;
-    border-radius: 0px;
+    border-radius: 0;
     z-index: 100;
   }
 
+  .logo-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 0 20px 20px 0;
+  }
+
+  .logo-container::after {
+    border-radius: 20px 0 0 0;
+  }
+
   .sidebar-bottom {
-    display: flex;
-    align-items: center;
     flex-direction: row-reverse;
+    width: auto;
+    height: 100%;
+    align-items: center;
   }
 
   .sidebar-divider {
     width: 1px;
     height: 100%;
+    margin: 0 24px;
   }
 
-  .logo-container {
-    height: 100%;
+  .avatar-container {
+    padding: 0 24px 0 0;
+  }
+
+  .theme-toggle {
+    padding: 0 24px;
   }
 
   .main-content {
-    margin-left: 0px;
-    margin-top: 30px;
+    margin-left: 0;
+    margin-top: 80px;
+    padding: 32px 24px;
+  }
+
+  .invoices-header {
+    margin-bottom: 32px;
+  }
+
+  .header-title {
+    font-size: 20px;
+    letter-spacing: -0.63px;
+  }
+
+  .header-subtitle {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .header-controls {
+    gap: 18px;
+  }
+
+  .new-invoice-btn {
+    padding: 6px 14px 6px 6px;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .plus-icon-container {
+    width: 24px;
+    height: 24px;
+  }
+
+  .filter-dropdown-container {
+    margin-right: 0;
   }
 
   .edit-overlay {
-    left: 0px;
-    top: 90px;
-    border-radius: 0px 20px 20px 0px;
+    left: 0;
+    top: 80px;
+    width: 100%;
+    height: calc(100% - 80px);
+  }
+
+  .edit-drawer {
+    width: 100%;
+    border-radius: 0 20px 20px 0;
+    padding: 24px;
   }
 }
 
 @media (max-width: 600px) {
   .invoice-card {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-row-gap: 24px;
+    grid-column-gap: 16px;
+    padding: 24px;
   }
 
-  .inv-date {
-    grid-column-start: 1;
-    grid-row-start: 2;
+  .inv-id {
+    grid-column: 1;
+    grid-row: 1;
   }
 
   .inv-client {
-    grid-column-start: 2;
-    grid-row-start: 1;
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+
+  .inv-date {
+    grid-column: 1;
+    grid-row: 2;
   }
 
   .inv-amount {
-    grid-column-start: 1;
-    grid-row-start: 3;
+    grid-column: 1;
+    grid-row: 3;
     text-align: left;
+    padding-right: 0;
+    font-size: 15px;
   }
 
   .status-tag {
-    grid-column-start: 2;
-    grid-row-start: 3;
+    grid-column: 2;
+    grid-row: 2 / span 2;
+    align-self: center;
+    justify-self: end;
+    width: 104px;
   }
 
   .purple-arrow-btn {
     display: none;
-    grid-column-start: 2;
-    grid-row-start: 2;
+  }
+
+  .item-row {
+    grid-template-columns: 1fr 1fr 1fr auto;
+    grid-template-areas:
+      "name name name name"
+      "qty price total del";
+    gap: 16px;
+  }
+
+  .item-row > input:nth-child(1) {
+    grid-area: name;
+  }
+
+  .item-row > input:nth-child(2) {
+    grid-area: qty;
+  }
+
+  .item-row > input:nth-child(3) {
+    grid-area: price;
+  }
+
+  .item-row > span {
+    grid-area: total;
+    align-self: center;
+  }
+
+  .item-row > button {
+    grid-area: del;
+    align-self: center;
+  }
+
+  .row {
+    flex-wrap: wrap;
+  }
+
+  .row > .invoice-input {
+    flex: 1 1 calc(50% - 16px);
+    min-width: 0;
+  }
+
+  .row > .invoice-input:last-child {
+    flex: 1 1 100%;
+  }
+
+  .create-actions {
+    flex-direction: column-reverse;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .actions-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .discard-btn,
+  .draft-btn,
+  .save {
+    flex: 1;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .filter-text {
+    display: none;
+  }
+
+  .filter-menu {
+    width: 160px;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .new-invoice-btn .btn-text {
+    display: none;
+  }
+
+  .new-invoice-btn {
+    padding: 6px;
+    gap: 0;
+  }
+
+  .edit-drawer h2 {
+    font-size: 20px;
   }
 }
