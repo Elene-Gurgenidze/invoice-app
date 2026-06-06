@@ -19,9 +19,14 @@ function App() {
   const [selectedInvoice, setSelectedInvoice] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
 
+  const [theme, setTheme] = useState("light")
+
   return (
-    <div className="app-container">
-      <Sidebar />
+    <div className={theme == "light" ? "app-container" : "app-container-dark"}>
+      <Sidebar 
+      theme={theme}
+      setTheme={setTheme}
+      />
       <main className="main-content">
         <Header
           count={filteredInvoices.length}

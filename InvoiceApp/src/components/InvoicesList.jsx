@@ -9,13 +9,6 @@ const InvoicesList = ({ invoices, activeFilters, setActiveFilters, onOpenForm })
 
   return (
     <>
-      <Header 
-        count={invoices.length} 
-        activeFilters={activeFilters} 
-        setActiveFilters={setActiveFilters} 
-        onNewInvoiceClick={onOpenForm}
-      />
-
       <div className="invoices-list">
         {invoices.map((invoice) => (
           <InvoiceItem key={invoice.id} invoice={invoice} />
