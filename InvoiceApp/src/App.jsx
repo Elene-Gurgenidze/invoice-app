@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react'; 
+import React, { useState, useEffect } from 'react'; 
 import Sidebar from './components/Sidebar';
 import InvoicesList from './components/InvoicesList';
 import InvoiceDetails from './components/InvoiceDetails'; 
@@ -8,10 +8,17 @@ import { ALL_INVOICES } from './data';
 import './App.css';
 
 function App() {
-  const [invoices, setInvoices] = useState(ALL_INVOICES);
+  const [invoices, setInvoices] = useState(() => {
+    const savedInvoices = localStorage.getItem('invoices');
+    return savedInvoices ? JSON.parse(savedInvoices) : ALL_INVOICES;
+  });
   const [activeFilters, setActiveFilters] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedInvoice, setSelectedInvoice] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem('invoices', JSON.stringify(invoices));
+  }, [invoices]);
 
   const filteredInvoices = invoices.filter(invoice => {
     if (activeFilters.length === 0) return true;
@@ -19,19 +26,37 @@ function App() {
   });
 
   const handleAddInvoice = (newInvoice) => {
-    setInvoices(prevInvoices => [newInvoice, ...prevInvoices]);
+    setInvoices(prevInvoices => {
+      const updated = [newInvoice, ...prevInvoices];
+      localStorage.setItem('invoices', JSON.stringify(updated));
+      return updated;
+    });
     setIsFormOpen(false);
   };
 
   const handleDeleteInvoice = (id) => {
-    setInvoices(prevInvoices => prevInvoices.filter(invoice => invoice.id !== id));
+    setInvoices(prevInvoices => {
+      const updated = prevInvoices.filter(invoice => invoice.id !== id);
+      localStorage.setItem('invoices', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const handleEditInvoice = (updatedInvoice) => {
-    setInvoices(prevInvoices => 
-      prevInvoices.map(inv => inv.id === updatedInvoice.id ? updatedInvoice : inv)
-    );
+    setInvoices(prevInvoices => {
+      const updated = prevInvoices.map(inv => inv.id === updatedInvoice.id ? updatedInvoice : inv);
+      localStorage.setItem('invoices', JSON.stringify(updated));
+      return updated;
+    });
     setIsFormOpen(false);
+  };
+
+  const handleUpdateStatus = (id, newStatus) => {
+    setInvoices(prevInvoices => {
+      const updated = prevInvoices.map(inv => inv.id === id ? { ...inv, status: newStatus } : inv);
+      localStorage.setItem('invoices', JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const openNewInvoiceForm = () => {
@@ -64,6 +89,7 @@ function App() {
                 invoices={invoices} 
                 onDeleteInvoice={handleDeleteInvoice}
                 onEditInvoice={openEditInvoiceForm}
+                onUpdateStatus={handleUpdateStatus}
               />
             } 
           />

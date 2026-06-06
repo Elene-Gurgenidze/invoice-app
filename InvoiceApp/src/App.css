@@ -89,7 +89,7 @@ body {
   padding: 16px 32px;
   border-radius: 8px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 20px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto;
   align-items: center;
   box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.1);
   border: 1px solid transparent;
@@ -248,6 +248,9 @@ body {
   padding: 8px;
   transition: transform 0.2s ease, opacity 0.2s ease;
   outline: none;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
 }
 
 .purple-arrow-btn:hover {
