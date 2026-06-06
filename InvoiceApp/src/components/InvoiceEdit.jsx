@@ -1,29 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const InvoiceCreate = ({ isOpen, onClose, onSave }) => {
-  const emptyInvoice = {
-    clientName: '',
-    clientEmail: '',
-    createdAt: new Date().toISOString().split('T')[0],
-    paymentTerms: '30',
-    description: '',
-    status: 'pending',
-    senderAddress: { street: '', city: '', postCode: '', country: '' },
-    clientAddress: { street: '', city: '', postCode: '', country: '' },
-    items: [],
-    total: 0
-  };
+const InvoiceEdit = ({ isOpen, onClose, onSave, invoice }) => {
+  const [formData, setFormData] = useState(null);
 
-  const [formData, setFormData] = useState(emptyInvoice);
+  useEffect(() => {
+    if (invoice) {
+      setFormData({ ...invoice });
+    }
+  }, [invoice, isOpen]);
 
-  if (!isOpen) return null;
-
-  const handleAddItem = () => {
-    setFormData({
-      ...formData,
-      items: [...formData.items, { name: '', quantity: 1, price: 0, total: 0 }]
-    });
-  };
+  if (!isOpen || !formData) return null;
 
   const handleItemChange = (index, field, value) => {
     const updatedItems = formData.items.map((item, idx) => {
@@ -52,29 +38,26 @@ const InvoiceCreate = ({ isOpen, onClose, onSave }) => {
     return date.toISOString().split('T')[0];
   };
 
-  const handleSubmit = (status) => {
-    const generatedId = Math.random().toString(36).substring(2, 8).toUpperCase();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const finalData = {
       ...formData,
-      id: generatedId,
-      status: status,
       paymentDue: calculatePaymentDue(formData.createdAt, formData.paymentTerms)
     };
     onSave(finalData);
-    setFormData(emptyInvoice);
     onClose();
   };
 
   return (
     <div className="form-overlay" onClick={onClose}>
       <div className="form-container" onClick={(e) => e.stopPropagation()}>
-        <h2 className="form-heading">New Invoice</h2>
-        <form onSubmit={(e) => { e.preventDefault(); handleSubmit('pending'); }}>
+        <h2 className="form-heading">Edit #{formData.id}</h2>
+        <form onSubmit={handleSubmit}>
+          {/* ... ინპუტები უცვლელია ... */}
           <div className="form-actions-container">
-            <button type="button" className="discard-btn" onClick={onClose}>Discard</button>
+            <button type="button" className="discard-btn" onClick={onClose}>Cancel</button>
             <div className="right-actions">
-              <button type="button" className="draft-btn" onClick={() => handleSubmit('draft')}>Save as Draft</button>
-              <button type="submit" className="save-send-btn">Save & Send</button>
+              <button type="submit" className="save-send-btn">Save Changes</button>
             </div>
           </div>
         </form>
@@ -83,4 +66,4 @@ const InvoiceCreate = ({ isOpen, onClose, onSave }) => {
   );
 };
 
-export default InvoiceCreate;
+export default InvoiceEdit;

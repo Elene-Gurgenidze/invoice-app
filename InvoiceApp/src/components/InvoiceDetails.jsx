@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const InvoiceDetails = ({ invoices, onDeleteInvoice, onEditInvoice }) => {
+const InvoiceDetails = ({ invoices, onDeleteInvoice, onEditInvoice, onUpdateStatus }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -34,6 +34,12 @@ const InvoiceDetails = ({ invoices, onDeleteInvoice, onEditInvoice }) => {
     return 0;
   };
 
+  const handleMarkAsPaid = () => {
+    if (onUpdateStatus) {
+      onUpdateStatus(invoice.id, 'paid');
+    }
+  };
+
   const displayTotal = getInvoiceTotal();
   const displayDate = invoice.createdAt || invoice.date;
   const displayDue = invoice.paymentDue || invoice.createdAt;
@@ -56,6 +62,9 @@ const InvoiceDetails = ({ invoices, onDeleteInvoice, onEditInvoice }) => {
         <div style={{ display: 'flex', gap: '8px' }}>
           <button className="edit-btn" onClick={() => onEditInvoice(invoice)} style={{ background: '#f9fafe', color: '#7e88c3', border: 'none', padding: '16px 24px', borderRadius: '24px', fontWeight: 'bold', cursor: 'pointer' }}>Edit</button>
           <button className="delete-btn" onClick={() => { onDeleteInvoice(invoice.id); navigate('/'); }} style={{ background: '#ec5757', color: '#fff', border: 'none', padding: '16px 24px', borderRadius: '24px', fontWeight: 'bold', cursor: 'pointer' }}>Delete</button>
+          {invoice.status === 'pending' && (
+            <button className="mark-paid-btn" onClick={handleMarkAsPaid} style={{ background: '#7c5dfa', color: '#fff', border: 'none', padding: '16px 24px', borderRadius: '24px', fontWeight: 'bold', cursor: 'pointer' }}>Mark as Paid</button>
+          )}
         </div>
       </div>
 
@@ -113,7 +122,7 @@ const InvoiceDetails = ({ invoices, onDeleteInvoice, onEditInvoice }) => {
 
           {invoice.items && Array.isArray(invoice.items) && invoice.items.map((item, idx) => {
             const itemPrice = Number(item.price || 0);
-            const itemQty = Number(item.quantity || 0);
+            const itemQty = Number(item.quantity || 0) || Number(item.qty || 0);
             const itemTotal = item.total || (itemPrice * itemQty);
             
             return (
